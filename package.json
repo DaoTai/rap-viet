@@ -1,0 +1,22 @@
+{
+  "name": "rapviet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaoTai/rap-viet.git"
+  },
+  "author": "Dao Tai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaoTai/rap-viet/issues"
+  },
+  "homepage": "https://github.com/DaoTai/rap-viet#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
