@@ -1,0 +1,20 @@
+
+<div class="mt-4">
+    <h1>Danh sách rapper</h1>
+    <div class="row list-rappers">
+        {{#each rappers}}
+            <div class="card col col-lg-4 col-md-4 mt-4">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img class="card-img-top" src="{{this.image}}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{this.rapname}}</h5>
+                    <p class="card-text">{{this.desc}}</p>
+                    <a href="/rapper/{{this.slug}}" class="btn btn-info">Chi tiết</a>
+                </div>
+            </div>
+            {{else }}
+                <p>Trống rỗng</p>
+        {{/each}}
+    </div>
+</div>

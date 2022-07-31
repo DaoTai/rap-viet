@@ -1,0 +1,56 @@
+<div class="mt-4" id="rapper-detail-page">
+        {{!-- Heading  --}}
+        <div class="profile__heading d-flex flex-column align-items-center  justify-content-center">
+            <img srcset="{{rapper.image}}" class="rounded-circle" id="avatar-rapper" alt="{{rapper.rapname}}">
+            <h1 class="mt-4 text-center text-white">{{rapper.rapname}}</h1>
+        </div>
+       
+       {{!-- Content --}}
+        <div class="row mt-4 profile__content">
+            <div class="col col-lg-3 border border-bottom-0 border-top-0  d-flex flex-column pt-1 button-group ">
+                <button class="btn btn-info"  data-toggle="collapse" data-target="#intro" aria-expanded="false" aria-controls="intro">
+                    Tiểu sử<span class="oi oi-folder"></span>
+                </button>
+                <button class="btn btn-danger"  data-toggle="collapse" data-target="#categories" aria-expanded="false" aria-controls="categories">
+                   Thể loại yêu thích<span class="oi oi-fire"></span>
+                </button>
+                <button class="btn btn-dark"  data-toggle="collapse" data-target="#impress-action" aria-expanded="false" aria-controls="impress-action">
+                    Hoạt động nổi bật<span class="oi oi-graph"></span>
+                </button>
+                 <button class="btn btn-warning"  data-toggle="collapse" data-target="#tracks" aria-expanded="false" aria-controls="tracks">
+                    Tracks<span class="oi oi-aperture"></span>
+                </button>
+            </div>
+
+            <div class="col col-lg-9">
+                <div class="collapse pb-1" id="intro">
+                    <ul class="card card-body">
+                       <li class="ml-4">Tên thật: <b>{{rapper.fullname}}</b></li>
+                       <li class="ml-4">Ngày sinh: {{getAge rapper.birth}}</li>
+                       <li class="ml-4">Đến từ: {{rapper.region}}</li>
+                        <details>{{rapper.desc}}</details>
+                    </ul>
+                </div>
+                <div class="collapse pb-1" id="categories">
+                    <ul class="card card-body">
+                        <b>Trường phái:</b>
+                        {{#each rapper.categories}}
+                            <li class="ml-4">{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="collapse pb-1" id="impress-action">
+                    <ul class="card card-body">
+                        {{#each rapper.impressActions}}
+                            <li class="ml-4">
+                                {{this}}
+                            </li>
+                            {{else}}
+                            <p class="text-center">Chưa cập nhật...</p>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

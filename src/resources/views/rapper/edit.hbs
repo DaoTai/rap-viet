@@ -1,0 +1,103 @@
+<div class="mt-4">
+        <a class="btn text-secondary rounded border border-secondary" href="/me/store-rappers"><span class="oi oi-arrow-circle-left"></span></a>
+    <form id="form-edit-rapper" method="post" action="/rapper/{{rapper._id}}/update?_method=PUT">
+        <img class="mx-auto d-block " src="{{rapper.image}}" alt="{{rapper.rapname}}"> 
+        <div class="form-group">
+            <label>Tên đầy đủ: </label>
+            <input type="text" class="form-control" name="fullname" value="{{rapper.fullname}}" placeholder="Nhập tên rapper">
+        </div>
+        <div class="form-group">
+            <label>Rap name:</label>
+            <input type="text" class="form-control" name="rapname" value="{{rapper.rapname}}" placeholder="Rapname...">
+        </div>
+         <div class="form-group">
+            <label>Ngày sinh: </label>
+            <input type="text" class="form-control" name="birth" value="{{rapper.birth}}" placeholder="VD: 24-10-2001">
+        </div>
+         
+        <div class="form-group">
+            <label for="">Vùng miền: <b>{{rapper.region}}</b></label>
+             <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Miền bắc</b>
+                <input type="radio" {{isCheckedRadio rapper.region "NorthSide"}} name="region" value="NorthSide"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Miền nam</b>
+                <input type="radio" {{isCheckedRadio rapper.region "SouthSide"}} name="region" value="SouthSide"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Miền trung</b>
+                <input type="radio" {{isCheckedRadio rapper.region "MidSide"}} name="region" value="MidSide"> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Thể loại:</label>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Lyrical</b>
+                <input type="checkbox" {{isCheckedCheckbox rapper.categories "lyrical"}} name="categories[]" value="lyrical"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Trap</b>
+                <input type="checkbox" {{isCheckedCheckbox rapper.categories "trap"}} name="categories[]" value="trap"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Love</b>
+                <input type="checkbox" {{isCheckedCheckbox rapper.categories "love"}} name="categories[]" value="love"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Life</b>
+                <input type="checkbox" {{isCheckedCheckbox rapper.categories "life"}} name="categories[]" value="life"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Tự do</b>
+                <input type="checkbox" class="" name="categories[]" value="free"> 
+            </div>
+        </div>
+
+         <div class="form-group">
+            <label for="rapname">Mô tả:</label>
+            <textarea class="form-control" name="desc">{{rapper.desc}} </textarea>
+        </div>
+         <div class="form-group">
+            <label for="rapname">Lịch sử hoạt động:</label>
+            <div id="wrap-textarea">
+                {{#each rapper.impressActions}}
+                    <textarea class="form-control mt-2" name="impressActions[]">{{this}}</textarea>
+                {{/each}}
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" id="remove-page-btn" class="mt-4 btn btn-light" disabled><span class="oi oi-minus"></span></button>
+                <button type="button" id="add-page-btn" class="mt-4 btn btn-light"><span class="oi oi-plus"></span></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="rapname">Ảnh đại diện:</label>
+            <input type="text" class="form-control" name="image" value="{{rapper.image}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        
+        $('#add-page-btn').click(function(){
+            $('#wrap-textarea').append('<textarea class="form-control mt-2" name="impressActions[]"> </textarea>')
+            enableRemovePageBtn()
+            $('#wrap-textarea textarea:last').focus()
+        })
+        $('#remove-page-btn').click(function(){
+            $('#wrap-textarea textarea:last').remove()
+            enableRemovePageBtn()
+        })
+
+        function enableRemovePageBtn(){
+            if($('textarea[name="impressActions[]"').length > 1){
+                $('#remove-page-btn').prop('disabled', false)
+            }else{
+                $('#remove-page-btn').prop('disabled', true)
+            }
+        }
+    })
+</script>

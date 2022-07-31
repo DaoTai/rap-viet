@@ -1,0 +1,109 @@
+<form method="post" action="/rapper/handle-all" class="mt-4">
+    <a href="/me/store-rappers">Quay lại</a>
+
+    <div class="mt-4 d-flex">
+        <div class="input-group-text">
+            <input id="checkbox-select-all" type="checkbox">
+        </div>
+        <select class="custom-select" id="all-options" name="action" required>
+            <option value="">Lựa chọn</option>
+            <option value="restore">Khôi phục</option>
+            <option value="force-delete">Xóa vĩnh viễn</option>
+        </select>
+        <button class="btn btn-primary">Thực hiện</button>
+    </div>
+
+    <table class="table table-hover mt-4">
+        <thead class="thead-dark ">
+            <tr>
+                <th scope="col">#</th>
+                 <th scope="col">STT</th>
+                <th scope="col">ID</th>
+                <th scope="col">Rap name</th>
+                <th scope="col">Tên thật</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col" colspan="2">Lựa chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rappers}}
+            <tr>
+                <th><input type="checkbox" name="idRappers[]" value="{{this._id}}"></th>
+                <th  class="font-weight-light">{{sum @index 1}}</th>
+                <th  class="font-weight-light">{{this._id}}</th>
+                <th  class="font-weight-light">{{this.rapname}}</th>
+                <th  class="font-weight-light">{{this.fullname}}</th>
+                <th  class="font-weight-light">{{this.birth}}</th>
+                <th  class="font-weight-light"><a href="" id="restore-btn" data-set="{{this._id}}">Khôi phục</a></th>
+                <th  class="font-weight-light"><a href="" data-toggle="modal" data-target="#confirmModal" data-whatever="{{this._id}}">Xóa vĩnh viễn</a></th>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Thông báo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Bạn chắc chắn xóa vĩnh viễn rapper này ? <br/>
+            <b>Lưu ý sẽ không thể phục hồi lại</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            <button type="button" id="soft-delete-btn" class="btn btn-danger">Xác nhận</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<form id="form-force-delete" method="POST"></form>
+<form id="form-restore" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const forceDeleteBtn = $('#soft-delete-btn')
+        const restoreBtn = $('#restore-btn')
+        let idRapper
+        const deleteForm = document.getElementById('form-force-delete')
+        const restoreForm = document.getElementById('form-restore')
+         const checkboxSelectAll = $("#checkbox-select-all")
+        const checkboxItem = $('input[type="checkbox"][name="idRappers[]"]')
+
+        $('#confirmModal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget) 
+            idRapper = button.data('whatever') 
+        })
+
+        forceDeleteBtn.click(function (event) {
+            deleteForm.action = '/rapper/' + idRapper + '/force-delete?_method=DELETE'
+            deleteForm.submit()
+        }) 
+
+        restoreBtn.click(function (e) {
+            e.preventDefault()
+            const idRapper = this.dataset.set
+            restoreForm.action = '/rapper/' + idRapper + '/restore?_method=PATCH'
+            restoreForm.submit()
+        }) 
+
+        checkboxSelectAll.change(function(){
+            let isChecked = $(this).is(':checked')
+            checkboxItem.prop('checked', isChecked)
+        })
+
+        checkboxItem.change(function(){
+            let isChecked = $('input[type="checkbox"][name="idRappers[]"]:checked').length === checkboxItem.length
+            checkboxSelectAll.prop('checked', isChecked)
+        })
+
+    })
+</script>

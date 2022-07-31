@@ -1,0 +1,99 @@
+<div class="container mt-4 pb-4">
+    <form method="POST" action="/rapper/store">
+        <div class="form-group">
+            <label for="fullname">Họ tên:</label>
+            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Nhập họ tên">
+        </div>
+        <div class="form-group">
+            <label for="rapname">Rap name:</label>
+            <input type="text" class="form-control" name="rapname" placeholder="Nhập rap name">
+        </div>
+        <div class="form-group">
+            <label for="rapname">Ngày sinh:</label>
+            <input type="local" class="form-control" name="birth" placeholder="VD: 24-10-2001">
+        </div>
+        <div class="form-group">
+            <label for="">Vùng miền:</label>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Miền bắc</b>
+                <input type="radio" class="" name="region" value="NorthSide"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Miền nam</b>
+                <input type="radio" class="" name="region" value="SouthSide"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Miền trung</b>
+                <input type="radio" class="" name="region" value="MidSide"> 
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Thể loại:</label>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Lyrical</b>
+                <input type="checkbox" class="" name="categories[]" value="lyrical"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Trap</b>
+                <input type="checkbox" class="" name="categories[]" value="trap"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Love</b>
+                <input type="checkbox" class="" name="categories[]" value="love"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Life</b>
+                <input type="checkbox" class="" name="categories[]" value="life"> 
+            </div>
+            <div class="form-group d-flex justify-content-between align-items-center">
+                <b class="ml-4">Tự do</b>
+                <input type="checkbox" class="" name="categories[]" value="free"> 
+            </div>
+           
+        </div>
+
+        <div class="form-group">
+            <label for="rapname">Mô tả:</label>
+            <textarea class="form-control" name="desc"> </textarea>
+        </div>
+         <div class="form-group">
+            <label for="rapname">Lịch sử hoạt động:</label>
+            <div id="wrap-textarea">
+                <textarea class="form-control" name="impressActions[]"> </textarea>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" id="remove-page-btn" class="mt-4 btn btn-light"disabled><span class="oi oi-minus"></span></button>
+                <button type="button" id="add-page-btn" class="mt-4 btn btn-light"><span class="oi oi-plus"></span></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="rapname">Ảnh đại diện:</label>
+            <input type="text" class="form-control" name="image"> 
+        </div>
+        <button type="submit" class="btn btn-success d-block ml-auto mt-4">Tạo mới</button>
+    </form>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+       
+        $('#add-page-btn').click(function(){
+            $('#wrap-textarea').append('<textarea class="form-control mt-2" name="impressActions[]"> </textarea>')
+            enableRemovePageBtn()
+            $('#wrap-textarea textarea:last').focus()
+        })
+        $('#remove-page-btn').click(function(){
+            $('#wrap-textarea textarea:last').remove()
+            enableRemovePageBtn()
+        })
+
+        function enableRemovePageBtn(){
+            if($('textarea[name="impressActions[]"').length > 1){
+                $('#remove-page-btn').prop('disabled', false)
+            }else{
+                $('#remove-page-btn').prop('disabled', true)
+            }
+        }
+    })
+</script>

@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap");
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  background: -webkit-linear-gradient(aqua, pink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s linear;
+}
+.brand-name:hover {
+  background: -webkit-linear-gradient(orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+input, textarea {
+  caret-color: green;
+  white-space: pre-line;
+}
+
+input[type=checkbox], input[type=radio] {
+  width: 18px;
+  height: 18px;
+  padding: 4px;
+  accent-color: green;
+}
+
+.list-rappers {
+  gap: 12px;
+}
+.list-rappers .card {
+  padding: 0px;
+  min-height: 360px;
+  flex: 1 0 280px;
+}
+.list-rappers .card:hover img {
+  padding-top: 12px;
+  width: 250px;
+  height: 250px;
+  filter: contrast(130%) brightness(110%) saturate(250%) drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
+  border-radius: 550px;
+  animation: circle 8s linear infinite;
+}
+.list-rappers .card img {
+  height: 350px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.profile__heading {
+  width: 100%;
+  background-image: url("/images/img-1.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 12px auto;
+  padding: 12px 0;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.profile__heading #avatar-rapper {
+  width: 200px;
+  height: 200px;
+  box-shadow: 2px 8px 8px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(2px 8px 8px rgba(255, 255, 255, 0.3));
+  object-fit: cover;
+}
+.profile__heading h1 {
+  font-weight: 600;
+  font-size: 2.4rem;
+  text-shadow: 1px 6px 6px rgba(0, 0, 0, 0.6);
+  letter-spacing: 2px;
+}
+
+.profile__content .button-group {
+  gap: 12px 0;
+}
+.profile__content .button-group button {
+  font-size: 1rem;
+}
+.profile__content .button-group button[aria-expanded=true] {
+  color: #000;
+}
+.profile__content .button-group button:hover span[class*=oi] {
+  color: rgb(233, 105, 20);
+  transform: scale(1.1) translateX(-5px);
+}
+.profile__content .button-group button span[class*=oi] {
+  color: orange;
+  float: right;
+  transition: all 0.3s ease-in-out;
+  transform-origin: right;
+}
+
+#form-edit-rapper img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+#all-options {
+  width: 240px;
+  margin: 0 24px;
+}
+
+@keyframes circle {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=app.css.map */
