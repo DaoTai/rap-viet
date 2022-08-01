@@ -20,31 +20,20 @@ class MeController{
 
         }
         catch(err){
-            console.log(err)
             next()
         }
 
-        // let rappers = Rapper.find({})
-        // if(req.query.hasOwnProperty('_sort')){
-        //     rappers.sort({
-        //         [req.query.column]: req.query.type
-        //     })
-        // }
-
-        // Promise.all([rappers, Rapper.countDocumentsDeleted({})])
-        //     .then(([rappers, deletedAmount]) => {
-        //         res.render('me/store-rapper', {
-        //             deletedAmount,
-        //             rappers: multipleMongooseToObject(rappers)
-        //         })
-        //     })
-        //     .catch(next)
     }
     
     // [GET] /me/trash-rappers
     async trashRappers(req, res, next) {
         try{
-            const rappers = await Rapper.findDeleted({})
+            let rappers = await Rapper.findDeleted({})
+            if(req.query.hasOwnProperty('_sort')){
+                rappers = await Rapper.findDeleted({}).sort({
+                    [req.query.column]: req.query.type
+                })
+            }
             res.render('me/trash-rapper',{
                 rappers: multipleMongooseToObject(rappers),
             })

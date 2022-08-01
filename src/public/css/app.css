@@ -40,7 +40,7 @@ input[type=checkbox], input[type=radio] {
 .list-rappers .card {
   padding: 0px;
   min-height: 360px;
-  flex: 1 0 280px;
+  flex: 1 1 312px;
 }
 .list-rappers .card:hover img {
   padding-top: 12px;
@@ -54,6 +54,12 @@ input[type=checkbox], input[type=radio] {
   height: 350px;
   object-fit: cover;
   transition: all 0.5s ease;
+}
+.list-rappers .card .card-text {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .profile__heading {

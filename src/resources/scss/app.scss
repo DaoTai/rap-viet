@@ -35,12 +35,20 @@ input[type="checkbox"],input[type="radio"]{
     accent-color: green;
 }
 
+// summary {
+//     list-style-type: none; /* Firefox */
+// }
+  
+// summary::-webkit-details-marker {
+//     display: none; /* Chrome */
+// }
+
 .list-rappers{
     gap: 12px;
     .card{
         padding: 0px;
         min-height: 360px;
-        flex: 1 0 280px;
+        flex: 1 1 312px;
         &:hover{
             img{
                 padding-top: 12px;
@@ -55,6 +63,12 @@ input[type="checkbox"],input[type="radio"]{
             height: 350px;
             object-fit: cover;
             transition: all 0.5s ease;
+        }
+        .card-text{
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 }

@@ -11,7 +11,7 @@ const Rapper = new Schema({
     region: {type: String, maxLength: 255},
     image: {type: String},
     desc: {type: String, default: 'Newbie'},
-    birth: {type: String},
+    birth: {type: Date},
     impressActions: {type: Array, default: []},
     slug: { type: String, slug: "rapname", unique: true },
 },{

@@ -24,6 +24,7 @@
                     {{{sortable 'fullname' _sort}}}
                 </th>
                 <th scope="col">Ngày sinh
+                     {{{sortable 'birth' _sort}}}
                 </th>
                 <th scope="col" colspan="2">Lựa chọn</th>
             </tr>
@@ -36,7 +37,7 @@
                 <th  class="font-weight-light">{{this._id}}</th>
                 <th  class="font-weight-light">{{this.rapname}}</th>
                 <th  class="font-weight-light">{{this.fullname}}</th>
-                <th  class="font-weight-light">{{this.birth}}</th>
+                <th  class="font-weight-light">{{formatDate this.birth}}</th>
                 <th  class="font-weight-light"><a href="/rapper/{{this._id}}/edit">Sửa</a></th>
                 <th  class="font-weight-light"><a href="" data-toggle="modal" data-target="#confirmModal" data-whatever="{{this._id}}">Xóa</a></th>
             </tr>

@@ -18,10 +18,14 @@
             <tr>
                 <th scope="col">#</th>
                  <th scope="col">STT</th>
-                <th scope="col">ID</th>
+                <th scope="col">ID
+                    {{{sortable '_id' _sort}}}
+                </th>
                 <th scope="col">Rap name</th>
                 <th scope="col">Tên thật</th>
-                <th scope="col">Ngày sinh</th>
+                <th scope="col">Ngày sinh
+                    {{{sortable 'birth' _sort}}}
+                </th>
                 <th scope="col" colspan="2">Lựa chọn</th>
             </tr>
         </thead>
@@ -33,7 +37,7 @@
                 <th  class="font-weight-light">{{this._id}}</th>
                 <th  class="font-weight-light">{{this.rapname}}</th>
                 <th  class="font-weight-light">{{this.fullname}}</th>
-                <th  class="font-weight-light">{{this.birth}}</th>
+                <th  class="font-weight-light">{{formatDate this.birth}}</th>
                 <th  class="font-weight-light"><a href="" id="restore-btn" data-set="{{this._id}}">Khôi phục</a></th>
                 <th  class="font-weight-light"><a href="" data-toggle="modal" data-target="#confirmModal" data-whatever="{{this._id}}">Xóa vĩnh viễn</a></th>
             </tr>

@@ -32,6 +32,10 @@ app.engine('hbs', handlebars.engine({
               return birth || 'Chưa cập nhật'
             }
         },
+        formatDate: (birth) => {
+            birth = new Date(birth)
+            return birth.toLocaleDateString("en-US")
+        } ,
         isCheckedRadio: (data, value) => data === value ? 'checked' : '',
         isCheckedCheckbox: (data, value) => data.includes(value) ? 'checked' : '',
         sortable: (field, sort) => {
